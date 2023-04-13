@@ -1,0 +1,167 @@
+@font-face {
+  font-family: "logo";
+  src: url(./fonts/RollAccurate-mvrx.ttf);
+}
+@font-face {
+  font-family: "start";
+  src: url(./fonts/GamePlayed-vYL7.ttf);
+}
+* {
+  color: black;
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+  background-color: transparent;
+}
+#heading {
+  font-size: 80px;
+  font-family: "logo";
+}
+#winner {
+  font-size: 120px;
+  opacity: 0%;
+  transition: opacity ease-out 300ms;
+}
+#winner.opacity-transition {
+  opacity: 100%;
+}
+label {
+  color: rgb(125, 141, 150);
+  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 260px;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: rgb(7, 12, 39);
+}
+input#username {
+  padding: 3px 10px;
+  background-color: rgba(255, 255, 255, 0.445);
+  border: none;
+}
+input::placeholder {
+  color: rgba(7, 12, 39, 0.644);
+}
+p.warning {
+  margin-top: -10px;
+  z-index: -1;
+  color: brown;
+  font-weight: bold;
+}
+h2.instruction {
+  text-shadow: 0px 0px 40px rgba(255, 255, 255, 0.692);
+}
+button#start,
+button#new-game {
+  font-size: 24px;
+  font-family: "start";
+  padding: 10px 50px;
+  box-shadow: 0px 0px 10px 3px black;
+  border: 8px brown outset;
+  background-color: brown;
+  margin: 20px;
+  color: rgb(205, 215, 221);
+}
+#content {
+  height: 100vh;
+  background-image: url(./pictures/giphy2.gif);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.square {
+  overflow: visible;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  position: relative;
+  outline: 1.5px solid black;
+}
+.ship {
+  flex-shrink: 0;
+  z-index: 1;
+  border: 1.5px solid black;
+  box-sizing: border-box;
+  background-color: rgb(7, 12, 39);
+}
+.ship.dragging {
+  -webkit-user-drag: unset;
+}
+.draggable {
+  cursor: move;
+}
+#game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  gap: 50px;
+}
+.board {
+  display: flex;
+  background-image: url(./pictures/sea-depth-vector-topographic-map-conceptual-user-interface-dark-blue-background_87538-2639.jpg);
+}
+#computer-board {
+  cursor: url(./pictures/gun-pointer.png) 16 16, auto;
+}
+#game h1 {
+  margin-top: 12px;
+  text-align: center;
+  color: rgb(205, 215, 221);
+  padding: 10px;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.carrier {
+  height: 40px;
+  width: 200px;
+}
+.battleship {
+  height: 40px;
+  width: 160px;
+}
+.destroyer {
+  height: 40px;
+  width: 120px;
+}
+.submarine {
+  height: 40px;
+  width: 120px;
+}
+.patrolboat {
+  height: 40px;
+  width: 80px;
+}
+.miss {
+  background-image: url(./pictures/new-moon.png);
+  background-size: contain;
+  width: 30%;
+  height: 30%;
+  margin: 35%;
+}
+.hit {
+  position: absolute;
+  background-image: url(./pictures/hit.gif);
+  background-size: contain;
+  width: 80%;
+  height: 80%;
+  z-index: 2;
+  margin: 10%;
+}
+.burn {
+  background-image: url(./pictures/burn.gif);
+  position: absolute;
+  background-size: contain;
+  width: 80%;
+  height: 80%;
+  z-index: 2;
+  margin: 10%;
+}
