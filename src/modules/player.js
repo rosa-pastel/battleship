@@ -2,7 +2,7 @@ import Gameboard from "./gameboard";
 import { displayMove } from "./dom";
 
 export default class Player {
-  constructor(playerName = "anon", isComputer = 0) {
+  constructor(playerName = "Someone", isComputer = 0) {
     this.name = playerName;
     this.gameboard = new Gameboard();
     this.ships;

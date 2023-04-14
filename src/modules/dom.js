@@ -12,18 +12,19 @@ export function initPage() {
       });
     });
   });
+  //Event listener didn't work for safari so I use both that and the loop attribute
+  soundtrack.loop = true;
+  soundtrack.play();
   displayDragAndDrop();
   const startBtn = document.getElementById("start");
   startBtn.addEventListener("click", () => {
     let username = getUsername();
-    if (username.length < 2) displayUsernameWarning();
-    else {
-      let ships = getShips();
-      let game = Game(username, ships);
-      cleanPage();
-      displayGameboards(game);
-      displayPlayerShips(game.player1.gameboard.ships);
-    }
+    if (username.length < 1) username = "Someone";
+    let ships = getShips();
+    let game = Game(username, ships);
+    cleanPage();
+    displayGameboards(game);
+    displayPlayerShips(game.player1.gameboard.ships);
   });
 }
 export function win(playerWins) {
@@ -53,10 +54,6 @@ export function win(playerWins) {
     winner.classList.add("opacity-transition");
   }, 1);
 }
-function displayUsernameWarning() {
-  const warning = document.querySelector("p.warning");
-  warning.setAttribute("style", "z-index: 0");
-}
 function cleanPage() {
   const content = document.getElementById("content");
   Array.from(content.children).map((element) => {
@@ -70,16 +67,23 @@ function getShips() {
   let ships = [];
   for (let col = 0; col < 10; col++) {
     for (let row = 0; row < 10; row++) {
-      let colDiv = document.querySelector(
+      let div = document.querySelector(
         `.board>div.col:nth-child(${col + 1})>div:nth-child(${row + 1})`
       );
-      if (colDiv.firstChild) {
-        let size = colDiv.firstChild.getBoundingClientRect().width / 40;
-        ships.push({ size: size, x: col, y: row });
+      if (div.firstChild) {
+        ships.push({ size: getShipSize(div.firstChild), x: col, y: row });
       }
     }
   }
   return ships;
+}
+function getShipSize(div) {
+  let size;
+  if (div.classList.contains("carrier")) size = 5;
+  else if (div.classList.contains("battleship")) size = 4;
+  else if (div.classList.contains("patrolboat")) size = 2;
+  else size = 3;
+  return size;
 }
 function displayDragAndDrop() {
   const gameDiv = document.getElementById("game");
@@ -93,10 +97,7 @@ function displayDragAndDrop() {
       square.classList.add("square");
       square.addEventListener("dragover", () => {
         let draggable = document.querySelector(".dragging");
-        if (
-          draggable &&
-          canDropShip(draggable.getBoundingClientRect().width / 40, col, row)
-        ) {
+        if (draggable && canDropShip(getShipSize(draggable), col, row)) {
           square.appendChild(draggable);
         }
       });
