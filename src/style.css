@@ -14,6 +14,7 @@
   font-family: monospace;
   background-color: transparent;
   font-size: 1rem;
+  text-align: center;
 }
 body {
   font-size: calc(8px + 0.5vmin);
@@ -23,7 +24,7 @@ body {
   font-family: "logo";
 }
 #winner {
-  font-size: 120px;
+  font-size: 4rem;
   opacity: 0%;
   transition: opacity ease-out 300ms;
 }
@@ -61,7 +62,7 @@ button#start,
 button#new-game {
   font-size: calc(8px + 2vmin);
   font-family: "start";
-  padding: 10px 50px;
+  padding: 10px min(50px, 2rem);
   box-shadow: 0px 0px 10px 3px black;
   border: 8px brown outset;
   background-color: brown;
@@ -151,7 +152,7 @@ button#new-game {
 }
 .miss {
   background-image: url(./pictures/new-moon.png);
-  background-size: contain;
+  background-size: cover;
   width: 30%;
   height: 30%;
   margin: 35%;
@@ -159,7 +160,7 @@ button#new-game {
 .hit {
   position: absolute;
   background-image: url(./pictures/hit.gif);
-  background-size: contain;
+  background-size: cover;
   width: 80%;
   height: 80%;
   z-index: 2;
@@ -168,7 +169,7 @@ button#new-game {
 .burn {
   background-image: url(./pictures/burn.gif);
   position: absolute;
-  background-size: contain;
+  background-size: cover;
   width: 80%;
   height: 80%;
   z-index: 2;
